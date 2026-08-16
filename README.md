@@ -2,6 +2,8 @@
 
 Это приложение является выполнением задания по теме "Формы в React" в рамках курса от [RS School](https://rs.school/).
 
+**Демо:** [https://react-forms.demo.sudorgin.com/](https://react-forms.demo.sudorgin.com/)
+
 ## Обзор функционала
 
 Приложение демонстрирует создание сложных, валидируемых форм в React с использованием современных библиотек и лучших практик.
@@ -34,17 +36,11 @@
 1.  **Клонируйте репозиторий:**
 
     ```bash
-    git clone https://github.com/Zilusion/rs-react-2025.git
-    cd rs-react-2025
+    git clone https://github.com/Zilusion/React-Forms.git
+    cd React-Forms
     ```
 
-2.  **Переключитесь на актуальную рабочую ветку:**
-
-    ```bash
-    git checkout forms
-    ```
-
-3.  **Установите зависимости:**
+2.  **Установите зависимости:**
     - **С помощью `pnpm` (рекомендуется):**
       ```bash
       pnpm install
