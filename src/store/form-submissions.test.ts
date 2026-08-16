@@ -61,7 +61,7 @@ describe('Form-submissions store', () => {
     ]);
   });
 
-  it('fetchCountries does not update state on non-ok response and logs error', async () => {
+  it('fetchCountries uses bundled countries on a non-ok response', async () => {
     const errSpy = vi.spyOn(console, 'error').mockImplementation(() => null);
     const mockFetch = vi
       .spyOn(globalThis, 'fetch')
@@ -75,10 +75,15 @@ describe('Form-submissions store', () => {
 
     expect(mockFetch).toHaveBeenCalledTimes(1);
     expect(errSpy).toHaveBeenCalled();
-    expect(useFormStore.getState().countries[0]?.name.common).toBe('Zed');
+    expect(useFormStore.getState().countries.length).toBeGreaterThan(200);
+    expect(
+      useFormStore.getState().countries.some((country) =>
+        country.name.common.includes('Netherlands'),
+      ),
+    ).toBe(true);
   });
 
-  it('fetchCountries catches thrown fetch errors', async () => {
+  it('fetchCountries uses bundled countries when fetch throws', async () => {
     const errSpy = vi.spyOn(console, 'error').mockImplementation(() => null);
     const mockFetch = vi
       .spyOn(globalThis, 'fetch')
@@ -88,6 +93,6 @@ describe('Form-submissions store', () => {
 
     expect(mockFetch).toHaveBeenCalledTimes(1);
     expect(errSpy).toHaveBeenCalled();
-    expect(useFormStore.getState().countries).toHaveLength(0);
+    expect(useFormStore.getState().countries.length).toBeGreaterThan(200);
   });
 });
