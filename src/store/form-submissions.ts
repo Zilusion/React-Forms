@@ -1,6 +1,10 @@
 import { create } from 'zustand';
 import type { FormSubmission, Country } from '@/types';
 
+const COUNTRIES_URL =
+  import.meta.env.VITE_COUNTRIES_URL ??
+  'https://restcountries.com/v3.1/all?fields=name';
+
 interface FormStoreState {
   submissions: FormSubmission[];
   countries: Country[];
@@ -19,9 +23,7 @@ export const useFormStore = create<FormStoreState>((set) => ({
 
   fetchCountries: async () => {
     try {
-      const response = await fetch(
-        'https://restcountries.com/v3.1/all?fields=name',
-      );
+      const response = await fetch(COUNTRIES_URL);
       if (!response.ok) {
         throw new Error('Failed to fetch countries');
       }
